@@ -1,6 +1,5 @@
 <?php
-date_default_timezone_set("Africa/Dakar ");
-header("Content-type: application/json; charset=UTF-8");
+header('Content-Type: application/json; charset=utf-8');
 
 define("API", dirname(__FILE__));
 define("ROOT", dirname(API));
@@ -33,7 +32,10 @@ function answer($response){
     $response['time'] = date('d/m/Y H:i:s');
 
     // On affiche la response en format json avec la fonction json_encode
-    echo json_encode($response);
+    $json = json_encode($response);
+    echo $json;
+   
+
 }
 
 function produceError($message){
@@ -56,5 +58,12 @@ function produceResult($result){
 function clearData($objetMetier){
     $objetMetier = array($objetMetier);
     return $objetMetier;
+}
+
+function clearDataArray($array_obj_met){
+    $result = [];
+    foreach ($array_obj_met as $key => $value) {
+      $result[$key] = clearData($value);
+    }
 }
 ?>

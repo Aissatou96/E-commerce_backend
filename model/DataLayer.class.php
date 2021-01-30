@@ -3,6 +3,9 @@
         
         private $connexion;
 
+        /**
+         * Connexion à la base de données dans le constructeur __construct
+         */
         function __construct()
         {
             $var="mysql:host=".HOST.";db_name=".DB_NAME;
