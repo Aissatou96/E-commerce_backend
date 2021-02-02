@@ -1,25 +1,25 @@
 <?php
 require_once 'commun_services.php';
 
-if(!isset($_REQUEST['sexe'])||!isset($_REQUEST['pseudo'])|| !isset($_REQUEST['firstname']) || !isset($_REQUEST['lastname'])||!isset($_REQUEST['email']) || !isset($_REQUEST['password']) || !isset($_REQUEST['dateBirth']) ){
+if(!isset($_POST['sexe'])||!isset($_POST['pseudo'])|| !isset($_POST['firstname']) || !isset($_POST['lastname'])||!isset($_POST['email']) || !isset($_POST['password']) || !isset($_POST['dateBirth']) ){
     produceErrorRequest();
     return;
 }
 
-if(empty($_REQUEST['sexe'])||empty($_REQUEST['pseudo'])|| empty($_REQUEST['firstname']) || empty($_REQUEST['lastname']) || empty($_REQUEST['email']) || empty($_REQUEST['password']) || empty($_REQUEST['dateBirth'])){
+if(empty($_POST['sexe'])||empty($_POST['pseudo'])|| empty($_POST['firstname']) || empty($_POST['lastname']) || empty($_POST['email']) || empty($_POST['password']) || empty($_POST['dateBirth'])){
     produceErrorRequest();
     return;
 }
 
 try {
     $user = new UserEntity();
-    $user->setSexe($_REQUEST['sexe']);
-    $user->setPseudo($_REQUEST['pseudo']);
-    $user->setFirstname($_REQUEST['firstname']);
-    $user->setLastname($_REQUEST['lastname']);
-    $user->setEmail($_REQUEST['email']);
-    $user->setPassword($_REQUEST['password']);
-    $user->setDateBirth($_REQUEST['dateBirth']);
+    $user->setSexe($_POST['sexe']);
+    $user->setPseudo($_POST['pseudo']);
+    $user->setFirstname($_POST['firstname']);
+    $user->setLastname($_POST['lastname']);
+    $user->setEmail($_POST['email']);
+    $user->setPassword($_POST['password']);
+    $user->setDateBirth($_POST['dateBirth']);
 
     $result = $db->createUser($user);
 

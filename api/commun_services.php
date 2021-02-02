@@ -7,6 +7,7 @@ define("SP",DIRECTORY_SEPARATOR);
 define("CONFIG", ROOT.SP."config");
 define("MODEL", ROOT.SP."model");
 define("ENTITY", ROOT.SP."entity");
+define("API_KEY", 'Password123');
 
 require_once CONFIG.SP."config.php";
 require_once MODEL.SP."DataLayer.class.php";
@@ -66,4 +67,21 @@ function clearDataArray($array_obj_met){
       $result[$key] = clearData($value);
     }
 }
+
+/**
+ * Fonction pour gérer les autorisations d'accès aux données avec une clé API_KEY
+ * @return void
+ */
+function controlAccess(){
+    global $_REQUEST;
+    if(!isset($_REQUEST['API_KEY']) || empty($_REQUEST['API_KEY'])){
+        produceErrorAuth();
+        exit();
+    }elseif ($_REQUEST['API_KEY']!== API_KEY) {
+      produceError("API_KEY incorrect!");
+      exit();
+    }
+}
+
+controlAccess();
 ?>

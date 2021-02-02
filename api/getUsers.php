@@ -2,7 +2,8 @@
     require_once 'commun_services.php';
 
     try {
-       $categories = $db->getUsers();
+        $users = new UserEntity();
+       $users = $db->getUsers();
         if ($users) {
             produceResult(clearDataArray($users));
         }else{
